@@ -33,6 +33,15 @@ export async function boughtItem(id) {
     return checkError(response);
 
 }
+export async function unBuyItem(id) {
+    const response = await client
+        .from('shopLists')
+        .update([{ bought: false }])
+        .match({ id });
+
+    return checkError(response);
+
+}
 export async function deleteAllItems() {
     const response = await client
         .from('shopLists')

@@ -1,4 +1,4 @@
-import { boughtItem, checkAuth, deleteAllItems, getShoppingList, logout, newItem } from '../fetch-utils.js';
+import { boughtItem, checkAuth, deleteAllItems, getShoppingList, logout, newItem, unBuyItem } from '../fetch-utils.js';
 import { renderItem } from '../render-utils.js';
 
 const formEl = document.getElementById('shoppingList-form');
@@ -39,11 +39,20 @@ async function displayShoppingListItems() {
     shoppingListEL.textContent = '';
     for (const item of items) {
         const newItem = renderItem(item);
+     
         newItem.addEventListener('click', async() => {
             await boughtItem(item.id);
-            // console.log("🚀 ~ file: shop.js ~ line 38 ~ newItem.addEventListener ~ newItem", newItem)
+                // console.log("🚀 ~ file: shop.js ~ line 38 ~ newItem.addEventListener ~ newItem", newItem)
             displayShoppingListItems();
+
+            if (item.bought) {
+                await unBuyItem(item.id);
+                // console.log("🚀 ~ file: shop.js ~ line 38 ~ newItem.addEventListener ~ newItem", newItem)
+                displayShoppingListItems();
+            }
         });
+            
+        
         shoppingListEL.append(newItem);
     }
 }

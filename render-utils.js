@@ -6,6 +6,8 @@ export function renderItem(item) {
 
     if (item.bought) {
         div.classList.add('bought');
+    } else {
+        div.classList.remove('bought');
     }
     p.textContent = `${item.quantity} ${item.item}`;
     div.append(p);
