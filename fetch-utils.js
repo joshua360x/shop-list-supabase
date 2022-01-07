@@ -12,7 +12,8 @@ export async function getUser() {
 export async function getShoppingList() {
     const response = await client
         .from('shopLists')
-        .select();
+        .select()
+        .order('id');
 
     return checkError(response);
 }
@@ -23,10 +24,11 @@ export async function newItem(quantity, item) {
 
     return checkError(response);
 }
-export async function buyItem() {
+export async function boughtItem(id) {
     const response = await client
         .from('shopLists')
-        .update([{ bought: true }]);
+        .update([{ bought: true }])
+        .match({ id });
 
     return checkError(response);
 

@@ -134,3 +134,7 @@ footer {
     display: flex;
     flex-direction: column;
 }
+
+.bought {
+    text-decoration: line-through red;
+}
