@@ -16,10 +16,10 @@ export async function getShoppingList() {
 
     return checkError(response);
 }
-export async function newItem(item) {
+export async function newItem(quantity, item) {
     const response = await client
         .from('shopLists')
-        .insert([{ item }]);
+        .insert([{ quantity, item }]);
 
     return checkError(response);
 }
