@@ -138,3 +138,7 @@ footer {
 .bought {
     text-decoration: line-through red;
 }
+
+.notBought {
+    color: lightseagreen;
+}
